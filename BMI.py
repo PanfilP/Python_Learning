@@ -1,6 +1,6 @@
 print("Kalkulator BMI")
-w=int()
-h=int()
+w=int(input("wprowadź swoją wagę w[kg]"+"  "))
+print(w)
 
 
 # def input_weight():
