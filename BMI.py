@@ -1,5 +1,5 @@
 print("Kalkulator BMI")
-data=[0,0]
+data=[0,0,0]
 # def input_weight():
 #     w=int(input("wprowadź swoją wagę w[kg]"+"  "))
 #
@@ -10,7 +10,10 @@ data=[0,0]
 w=0
 h=0
 def input_weight():
-    w=int(input("wprowadź swoją wagę w[kg]"+"  "))
+    w=(input("wprowadź swoją wagę w[kg]"+"  "))
+    if "," in w:
+        print("użyj kropki zamiast pzecinka")
+
     try:
         w=float(w)
         w=int(w)
@@ -22,11 +25,20 @@ def input_weight():
                 input_weight()
             elif d=="n":
                 print("as u wish")
-                input_height(h)
+                input_height()
         elif w>175:
-            print("To nie możliwe, żeś taki olbrzym")
+            print("To nie możliwe, żeś taki olbrzym. \nChcesz poprawić wprowadzoną wartość?")
+            d = input("T/N" + " ")
+            if d == "t":
+                input_weight()
+            elif d == "n":
+                print("as u wish")
+                data[0] = w
+                input_height()
         else:
+            w=float(w)
             print("Twoja waga to", w)
+
         data[0]=w
     except:
         print("wprowadzona wartość jest nieprawidłowa")
@@ -42,33 +54,40 @@ def input_height():
             d=input("T/N"+ " ")
             if d=="t":
                 input_height()
-            elif d=="n":
+            else :
                 print("as u wish")
-                count(r)
+                count()
         elif h>215:
-            print("To nie możliwe, żeś taki olbrzym")
+            print("To nie możliwe, żeś taki olbrzym \nChcesz poprawić wprowadzoną wartość?")
+            d = input("T/N" + " ")
+            if d == "t":
+                input_height()
+            elif d == "n":
+                print("as u wish")
+                count()
         else:
             print("Twój wzrost to", h)
-        data[1]=h
+            data[1]=h
     except:
         print("wprowadzona wartość jest nieprawidłowa")
         input_height()
-
+def count():
+    r=(w/((h/100)**2))
+    data[2]=r
 input_weight()
-input_height()
-
-# print(data)
-# print(data[1])
 w=data[0]
+input_height()
 h=data[1]
-# print(w,h)
-r=(w/((h/100)**2))
+count()
+r=data[2]
+# round(r,2)
+#print(type(r))
+print(data)
+print("Twoje BMI to:"+" ",round(data[2],0))
 
-print("Twoje BMI to:"+" ",r)
-
-# if r<18.5:
-#     print("masz niedowagę")
-# elif r>=24.99:
-#     print("masz poważną nadwagę")
-# else:
-#     print("dobrze się prowadzisz")
+if r<18.5:
+    print("masz niedowagę")
+elif r>=24.99:
+    print("masz poważną nadwagę")
+else:
+    print("dobrze się prowadzisz")
