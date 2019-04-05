@@ -90,4 +90,4 @@ if r<18.5:
 elif r>=24.99:
     print("masz poważną nadwagę")
 else:
-    print("dobrze się prowadzisz")
+    print("dobrze się prowadzisz hłe hłe hłe")
